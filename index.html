@@ -52,6 +52,16 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
         }
+
+        .project-card {
+            width: 50%; /* Desktop: show 2 cards */
+        }
+        
+        @media (max-width: 768px) {
+            .project-card {
+                width: 100%; /* Mobile: show 1 card */
+            }
+        }
     </style>
 </head>
 <body class="font-source text-muted-foreground bg-white">
@@ -68,7 +78,7 @@
                     <a href="#experience" class="hover:text-primary transition-colors duration-300">Experience</a>
                     <a href="#education" class="hover:text-primary transition-colors duration-300">Education</a>
                     <a href="#certificates" class="hover:text-primary transition-colors duration-300">Certificates</a>
-                    <!-- <a href="#projects" class="hover:text-primary transition-colors duration-300">Projects</a> -->
+                    <a href="#projects" class="hover:text-primary transition-colors duration-300">Projects</a>
                     <a href="#contact" class="hover:text-primary transition-colors duration-300">Contact</a>
                 </div>
                 <!-- Added mobile menu functionality -->
@@ -85,7 +95,7 @@
                     <a href="#experience" class="hover:text-primary transition-colors duration-300 mobile-menu-link">Experience</a>
                     <a href="#education" class="hover:text-primary transition-colors duration-300 mobile-menu-link">Education</a>
                     <a href="#certificates" class="hover:text-primary transition-colors duration-300 mobile-menu-link">Certificates</a>
-                    <!-- <a href="#projects" class="hover:text-primary transition-colors duration-300 mobile-menu-link">Projects</a> -->
+                    <a href="#projects" class="hover:text-primary transition-colors duration-300 mobile-menu-link">Projects</a>
                     <a href="#contact" class="hover:text-primary transition-colors duration-300 mobile-menu-link">Contact</a>
                 </div>
             </div>
@@ -111,9 +121,9 @@
                         A passionate full-stack developer creating beautiful, functional web experiences that make a difference.
                     </p>
                     <div class="flex gap-4">
-                        <!-- <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-300 font-semibold">
+                        <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-300 font-semibold">
                             View My Work
-                        </a> -->
+                        </a>
                         <a href="#contact" class="border-2 border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 font-semibold">
                             Get In Touch
                         </a>
@@ -299,7 +309,6 @@ Beyond technical expertise, I value continuous learning, adaptability, teamwork,
                                 Gained strong foundation in <span class="italic">web development, information systems, and database management</span>. 
                                 Developed various projects including <span class="italic">Laravel-based employee management system, event management feature, and Flutter front-end applications</span>.
                                 </div>
-                                
                             </p>
                         </div>
                     </div>
@@ -369,100 +378,156 @@ Beyond technical expertise, I value continuous learning, adaptability, teamwork,
             </div>
         </div>
     </div>
-            
     </section>
 
     <!-- Projects Section -->
-    <!-- <section id="projects" class="py-16 bg-muted">
+    <section id="projects" class="py-16 bg-muted">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="fade-in text-center mb-12">
-                <h2 class="font-playfair font-bold text-4xl text-gray-900 mb-4">Featured Projects</h2>
-                <p class="text-xl text-muted-foreground">Some of my recent work</p>
+                <h2 class="font-playfair font-bold text-4xl text-gray-900 mb-4">Projects</h2>
+                <p class="text-xl text-muted-foreground">Some of my projects</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-2">
-                <div class="fade-in group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                        <img src="/placeholder.svg?height=200&width=400" 
-                             alt="E-commerce Platform" 
-                             class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">E-commerce Platform</h3>
-                            <p class="text-muted-foreground mb-4">A full-stack e-commerce solution with React, Node.js, and Stripe integration.</p>
-                            <div class="flex gap-2 mb-4">
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">React</span>
-                                <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Node.js</span>
-                                <span class="px-3 py-1 bg-flowery/20 text-flowery text-sm rounded-full">MongoDB</span>
+
+            <div class="relative">
+                <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-primary hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-primary hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <div class="overflow-hidden mx-12">
+                    <div id="projectsCarousel" class="flex transition-transform duration-500 ease-in-out">
+                        <div class="project-card px-3 flex-shrink-0">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-accent">
+                                <img src="dorm.png" alt="dorm" class="w-full h-full object-cover">
+                                <div class="p-6">
+                                    <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">UMY Student Dormitory Employee Information System</h3>
+                                    <p class="text-muted-foreground mb-4">
+                                                    <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+                                                        <li>Conducted requirement gathering sessions with stakeholders to understand dormitory staff management workflows.</li>
+                                                        <li>Translated requirements into system modules: event management, attendance scheduling, leave/permission requests, and payroll.</li>
+                                                        <li>Designed a role-based access structure for employees, managers, and division leaders to ensure clear responsibilities.</li>
+                                                        <li>Implemented backend logic for attendance tracking and payslip generation, solving issues with data consistency and PDF export.</li>
+                                                        <li>Developed a clean and modern frontend interface with Blade + Tailwind CSS, focusing on usability for non-technical users.</li>
+                                                        <li>Iteratively tested features with sample users and refined workflows to improve efficiency and reduce reporting errors.</li>
+                                                    </ul>
+                                                </p>                                    
+                                    <div class="flex gap-2 mt-4 mb-4">
+                                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Laravel</span>
+                                        <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">HTML</span>
+                                        <span class="px-3 py-1 bg-flowery/20 text-flowery text-sm rounded-full">Tailwind CSS</span>
+                                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">JavaScript</span>
+                                        <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">MySQL</span>
+                                    </div>
+                                    <div class="flex gap-4 mt-3">
+                                        <a href="https://github.com/sarahannata/studentdormitory.git" class="text-primary hover:text-primary/80 font-semibold">GitHub</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex gap-4">
-                                <a href="#" class="text-primary hover:text-primary/80 font-semibold">Live Demo</a>
-                                <a href="#" class="text-muted-foreground hover:text-gray-900">GitHub</a>
+                        </div>
+
+                        <div class="project-card px-3 flex-shrink-0">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-primary">
+                                <img src="simfoni.png" alt="simfoni" class="w-full h-full object-cover">
+                                <div class="p-6">
+                                    <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">Social Welfare Institution (LKS) Monitoring Information System</h3>
+                                    <p class="text-muted-foreground mb-2">
+                                        Internship Project – Web Application (Team of 5)
+                                    </p>
+                                    <p class="text-muted-foreground mb-2">
+                                        <strong>Tech Stack:</strong> Java Spring Boot (Backend), HTML, CSS, Bootstrap, JavaScript (Frontend)
+                                    </p>
+                                    <p class="font-semibold mb-2">My Role – Frontend Developer (LKS Role Interface)</p>
+                                    <ul class="list-disc list-inside text-muted-foreground space-y-1 mb-4">
+                                        <li>Translated UI/UX team designs into responsive and user-friendly web pages.</li>
+                                        <li>Developed the LKS role interface using HTML, CSS, Bootstrap, and JavaScript.</li>
+                                        <li>Built the routine reporting module for periodic submissions to Social Service (Dinas Sosial).</li>
+                                        <li>Implemented CRUD pages for LKS data management (view, add, edit, delete).</li>
+                                    </ul>                                    
+                                    <div class="flex gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">HTML</span>
+                                        <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">CSS</span>
+                                        <span class="px-3 py-1 bg-flowery/20 text-flowery text-sm rounded-full">JavaScript</span>
+                                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Bootstrap</span>
+                                        <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Apache</span>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <a href="https://github.com/sarahannata/simfonidinsos.git" class="text-primary hover:text-primary/80 font-semibold">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card px-3 flex-shrink-0">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-secondary">
+                                <img src="appsel.jpg" alt="appsel" class="w-full h-full object-cover">
+                                <div class="p-6">
+                                    <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">AppSel</h3>
+                                    <p class="text-muted-foreground mb-2">
+                                            College Project – MyTelkomsel UI Replica (Flutter)
+                                        </p>
+                                        <p class="text-muted-foreground mb-2"><strong>Course:</strong> Multiplatform Programming</p>
+                                        <ul class="list-disc list-inside space-y-1 text-muted-foreground mb-4">
+                                            <li>Practiced mobile app development basics using Flutter & Dart.</li>
+                                            <li>Recreated the homepage interface of the official MyTelkomsel app.</li>
+                                            <li>Explored and implemented core Flutter widgets (Scaffold, AppBar, BottomNavigationBar, Card, GridView).</li>
+                                            <li>Focused on UI consistency and component structuring to understand widget hierarchy and layout management.</li>
+                                        </ul>
+                                          <div class="flex gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Flutter</span>
+                                        <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Dart</span>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <a href="https://github.com/sarahannata/appsel.git" class="text-primary hover:text-primary/80 font-semibold">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card px-3 flex-shrink-0">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-flowery">
+                                <img src="day.png" alt="day" class="w-full h-full object-cover">
+                                <div class="p-6">
+                                    <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">A Day in My Life</h3>
+                                    <p class="text-muted-foreground mb-2"><strong>Course:</strong> Web Design Development</p>
+                                        <ul class="list-disc list-inside space-y-1 text-muted-foreground mb-4">
+                                            <li>Built with HTML, CSS, and JavaScript to practice web development fundamentals.</li>
+                                            <li>Added personalized greetings based on the current time of day.</li>
+                                            <li>Focused on a clean, responsive, and interactive layout for better user experience.</li>
+                                        </ul>                                    
+                                        <div class="flex gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">HTML</span>
+                                        <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">CSS</span>
+                                        <span class="px-3 py-1 bg-flowery/20 text-flowery text-sm rounded-full">JavaScript</span>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <a href="https://github.com/sarahannata/dayinlife.git" class="text-primary hover:text-primary/80 font-semibold">GitHub</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="fade-in group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                        <img src="/placeholder.svg?height=200&width=400" 
-                             alt="E-commerce Platform" 
-                             class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">E-commerce Platform</h3>
-                            <p class="text-muted-foreground mb-4">A full-stack e-commerce solution with React, Node.js, and Stripe integration.</p>
-                            <div class="flex gap-2 mb-4">
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">React</span>
-                                <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Node.js</span>
-                                <span class="px-3 py-1 bg-flowery/20 text-flowery text-sm rounded-full">MongoDB</span>
-                            </div>
-                            <div class="flex gap-4">
-                                <a href="#" class="text-primary hover:text-primary/80 font-semibold">Live Demo</a>
-                                <a href="#" class="text-muted-foreground hover:text-gray-900">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="fade-in group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                        <img src="/placeholder.svg?height=200&width=400" 
-                             alt="Task Management App" 
-                             class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">Task Management App</h3>
-                            <p class="text-muted-foreground mb-4">A collaborative task management tool with real-time updates and team features.</p>
-                            <div class="flex gap-2 mb-4">
-                                <span class="px-3 py-1 bg-secondary/30 text-secondary text-sm rounded-full">Vue.js</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Firebase</span>
-                                <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Tailwind</span>
-                            </div>
-                            <div class="flex gap-4">
-                                <a href="#" class="text-primary hover:text-primary/80 font-semibold">Live Demo</a>
-                                <a href="#" class="text-muted-foreground hover:text-gray-900">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="fade-in group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                        <img src="/placeholder.svg?height=200&width=400" 
-                             alt="Weather App" 
-                             class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="font-playfair font-bold text-xl text-gray-900 mb-2">Weather Forecast App</h3>
-                            <p class="text-muted-foreground mb-4">A beautiful weather app with location-based forecasts and interactive maps.</p>
-                            <div class="flex gap-2 mb-4">
-                                <span class="px-3 py-1 bg-flowery/20 text-flowery text-sm rounded-full">React Native</span>
-                                <span class="px-3 py-1 bg-secondary/30 text-secondary text-sm rounded-full">API</span>
-                                <span class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full">Maps</span>
-                            </div>
-                            <div class="flex gap-4">
-                                <a href="#" class="text-primary hover:text-primary/80 font-semibold">Live Demo</a>
-                                <a href="#" class="text-muted-foreground hover:text-gray-900">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="flex justify-center mt-8 gap-2">
+                    <button class="carousel-indicator desktop-indicator w-3 h-3 rounded-full bg-primary transition-all duration-300 hidden md:block" data-slide="0"></button>
+                    <button class="carousel-indicator desktop-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 hidden md:block" data-slide="1"></button>
+                    
+                    <button class="carousel-indicator mobile-indicator w-3 h-3 rounded-full bg-primary transition-all duration-300 block md:hidden" data-slide="0"></button>
+                    <button class="carousel-indicator mobile-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 block md:hidden" data-slide="1"></button>
+                    <button class="carousel-indicator mobile-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 block md:hidden" data-slide="2"></button>
+                    <button class="carousel-indicator mobile-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary/50 transition-all duration-300 block md:hidden" data-slide="3"></button>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
+
 
     <!-- Contact Section -->
     <!-- <CHANGE> Simplified contact section to only include email, phone, location, and LinkedIn -->
@@ -581,6 +646,107 @@ Beyond technical expertise, I value continuous learning, adaptability, teamwork,
                 }
             });
         });
+
+        const carousel = document.getElementById('projectsCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const desktopIndicators = document.querySelectorAll('.desktop-indicator');
+        const mobileIndicators = document.querySelectorAll('.mobile-indicator');
+        
+        let currentSlide = 0;
+        let totalSlides = 2; // Default for desktop (4 projects, showing 2 at a time = 2 slides)
+        let isMobile = window.innerWidth <= 768;
+        
+        function updateResponsiveSettings() {
+            const wasMobile = isMobile;
+            isMobile = window.innerWidth <= 768;
+            totalSlides = isMobile ? 4 : 2; // Mobile: 4 slides (1 card each), Desktop: 2 slides (2 cards each)
+            
+            if (wasMobile !== isMobile) {
+                currentSlide = 0;
+            }
+        }
+        
+        function updateCarousel() {
+            updateResponsiveSettings();
+            
+            const translateX = currentSlide * -100;
+            carousel.style.transform = `translateX(${translateX}%)`; 
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            
+            const activeIndicators = isMobile ? mobileIndicators : desktopIndicators;
+            activeIndicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.remove('bg-gray-300');
+                    indicator.classList.add('bg-primary');
+                } else {
+                    indicator.classList.remove('bg-primary');
+                    indicator.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateCarousel();
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateCarousel();
+            }
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+        
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        desktopIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => goToSlide(index));
+        });
+        
+        mobileIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => goToSlide(index));
+        });
+        
+        window.addEventListener('resize', () => {
+            updateCarousel();
+        });
+        
+        updateCarousel();
+        
+        let autoPlayInterval;
+        
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                if (currentSlide < totalSlides - 1) {
+                    nextSlide();
+                } else {
+                    currentSlide = 0;
+                    updateCarousel();
+                }
+            }, 5000); // Change slide every 5 seconds
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        startAutoPlay();
+        
+        const projectsSection = document.getElementById('projects');
+        projectsSection.addEventListener('mouseenter', stopAutoPlay);
+        projectsSection.addEventListener('mouseleave', startAutoPlay);
+
     </script>
 </body>
 </html>
